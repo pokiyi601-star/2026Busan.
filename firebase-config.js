@@ -1,14 +1,18 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "你的apiKey",
-  authDomain: "你的authDomain",
-  projectId: "你的projectId",
-  storageBucket: "你的storageBucket",
-  messagingSenderId: "你的messagingSenderId",
-  appId: "你的appId"
+  apiKey: "AIzaSyCuDL3rhZyR47I9fdWHk1sb8irZfHVII",
+  authDomain: "busan-aug.firebaseapp.com",
+  projectId: "busan-aug",
+  storageBucket: "busan-aug.firebasestorage.app",
+  messagingSenderId: "947761429229",
+  appId: "1:947761429229:web:259ed723f12991eeccaae4",
+  measurementId: "G-SYJQNCMCXD"
 };
 
 const app = initializeApp(firebaseConfig);
 
-export { app };
+const db = getFirestore(app);
+
+export { db };
