@@ -2,6 +2,7 @@
 <html lang="zh-TW">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,18 +11,20 @@
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
 
 body {
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family:'Noto Sans TC',sans-serif;
     background-color:#EAE6DF;
 }
 
-.travel-book {
+.travel-book{
     background:white;
     border-radius:4px;
     box-shadow:0 15px 35px rgba(50,45,40,.15);
 }
+
 </style>
 
 </head>
@@ -71,7 +74,7 @@ Busan Travel Expenses
 韓幣總額
 </p>
 
-<p class="text-xl font-black mt-2">
+<p class="text-xl font-black">
 ₩ 0
 </p>
 
@@ -85,7 +88,7 @@ Busan Travel Expenses
 台幣約
 </p>
 
-<p class="text-xl font-black mt-2">
+<p class="text-xl font-black">
 NT$ 0
 </p>
 
@@ -95,6 +98,7 @@ NT$ 0
 </div>
 
 </div>
+
 
 
 
@@ -120,7 +124,8 @@ NT$ 0
 📅 日期
 </label>
 
-<input type="date"
+<input id="date"
+type="date"
 class="w-full mt-2 p-3 border rounded-lg">
 
 </div>
@@ -134,7 +139,8 @@ class="w-full mt-2 p-3 border rounded-lg">
 📝 項目
 </label>
 
-<input type="text"
+<input id="item"
+type="text"
 placeholder="例如：機場接送"
 class="w-full mt-2 p-3 border rounded-lg">
 
@@ -149,7 +155,8 @@ class="w-full mt-2 p-3 border rounded-lg">
 🇰🇷 韓幣金額 ₩
 </label>
 
-<input type="number"
+<input id="won"
+type="number"
 placeholder="例如：7500"
 class="w-full mt-2 p-3 border rounded-lg">
 
@@ -164,9 +171,13 @@ class="w-full mt-2 p-3 border rounded-lg">
 💳 付款方式
 </label>
 
+
+<div class="grid grid-cols-2 gap-3 mt-2">
+
+
 <button 
 id="cashBtn"
-onclick="selectPayment('cash')"
+onclick="selectPayment('現金')"
 class="border rounded-lg p-3">
 
 💵 現金
@@ -174,15 +185,15 @@ class="border rounded-lg p-3">
 </button>
 
 
+
 <button 
 id="cardBtn"
-onclick="selectPayment('card')"
+onclick="selectPayment('刷卡')"
 class="border rounded-lg p-3">
 
 💳 刷卡
 
 </button>
-
 
 
 </div>
@@ -199,12 +210,15 @@ class="border rounded-lg p-3">
 </label>
 
 
-<select class="w-full mt-2 p-3 border rounded-lg">
+<select id="person"
+class="w-full mt-2 p-3 border rounded-lg">
+
 
 <option>阿翔</option>
 <option>橘子</option>
 <option>凱婷</option>
 <option>蘇</option>
+
 
 </select>
 
@@ -214,7 +228,11 @@ class="border rounded-lg p-3">
 
 
 
-<button class="w-full bg-stone-800 text-white rounded-lg p-3 font-bold">
+<button
+
+onclick="addExpense()"
+
+class="w-full bg-stone-800 text-white rounded-lg p-3 font-bold">
 
 ＋ 新增紀錄
 
@@ -236,6 +254,7 @@ class="border rounded-lg p-3">
 
 
 
+
 <footer class="bg-stone-100 py-4 text-center text-xs text-stone-400 font-bold">
 
 祝大家玩得超開心！安全第一 ✈️🌊
@@ -243,51 +262,68 @@ class="border rounded-lg p-3">
 </footer>
 
 
+
 </div>
+
 
 
 <script>
 
 let paymentMethod = "";
 
+
 function selectPayment(method){
 
-    paymentMethod = method;
-
-    document.getElementById("cashBtn").classList.remove(
-        "bg-stone-800",
-        "text-white"
-    );
-
-    document.getElementById("cardBtn").classList.remove(
-        "bg-stone-800",
-        "text-white"
-    );
+paymentMethod = method;
 
 
-    if(method === "cash"){
-
-        document.getElementById("cashBtn").classList.add(
-            "bg-stone-800",
-            "text-white"
-        );
-
-    }
+document.getElementById("cashBtn")
+.classList.remove("bg-stone-800","text-white");
 
 
-    if(method === "card"){
+document.getElementById("cardBtn")
+.classList.remove("bg-stone-800","text-white");
 
-        document.getElementById("cardBtn").classList.add(
-            "bg-stone-800",
-            "text-white"
-        );
 
-    }
+
+if(method==="現金"){
+
+document.getElementById("cashBtn")
+.classList.add("bg-stone-800","text-white");
+
+}
+
+
+
+if(method==="刷卡"){
+
+document.getElementById("cardBtn")
+.classList.add("bg-stone-800","text-white");
+
+}
 
 
 }
 
+
+
+
+function addExpense(){
+
+
+alert(
+"新增紀錄測試成功！\n\n"+
+"項目："+document.getElementById("item").value+
+"\n金額："+document.getElementById("won").value+
+"\n付款："+paymentMethod
+);
+
+
+}
+
+
 </script>
+
 
 
 </body>
