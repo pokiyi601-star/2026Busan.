@@ -53,21 +53,179 @@ Busan Travel Expenses
 <section class="bg-stone-50 rounded-xl border p-6">
 
 
-<h2 class="text-xl font-black mb-6">
-💰 新增花費
+<!-- 總計 -->
+
+<div class="bg-white rounded-xl border p-5 mb-6">
+
+<h2 class="text-xl font-black mb-4">
+📊 旅費總計
 </h2>
 
 
-<p class="text-stone-500">
-下一步加入：
-日期 / 項目 / 韓幣金額 / 刷卡現金 / 台幣換算 / 付款人
+<div class="grid grid-cols-2 gap-4 text-center">
+
+
+<div class="bg-stone-50 rounded-lg p-4">
+
+<p class="text-xs text-stone-500">
+韓幣總額
 </p>
+
+<p class="text-xl font-black mt-2">
+₩ 0
+</p>
+
+</div>
+
+
+
+<div class="bg-stone-50 rounded-lg p-4">
+
+<p class="text-xs text-stone-500">
+台幣約
+</p>
+
+<p class="text-xl font-black mt-2">
+NT$ 0
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
+<!-- 新增花費 -->
+
+<div class="bg-white rounded-xl border p-5">
+
+
+<h2 class="text-xl font-black mb-5">
+➕ 新增花費
+</h2>
+
+
+
+<div class="space-y-4">
+
+
+
+<div>
+
+<label class="font-bold text-sm">
+📅 日期
+</label>
+
+<input type="date"
+class="w-full mt-2 p-3 border rounded-lg">
+
+</div>
+
+
+
+
+<div>
+
+<label class="font-bold text-sm">
+📝 項目
+</label>
+
+<input type="text"
+placeholder="例如：機場接送"
+class="w-full mt-2 p-3 border rounded-lg">
+
+</div>
+
+
+
+
+<div>
+
+<label class="font-bold text-sm">
+🇰🇷 韓幣金額 ₩
+</label>
+
+<input type="number"
+placeholder="例如：7500"
+class="w-full mt-2 p-3 border rounded-lg">
+
+</div>
+
+
+
+
+<div>
+
+<label class="font-bold text-sm">
+💳 付款方式
+</label>
+
+
+<div class="grid grid-cols-2 gap-3 mt-2">
+
+<button class="border rounded-lg p-3">
+💵 現金
+</button>
+
+
+<button class="border rounded-lg p-3">
+💳 刷卡
+</button>
+
+
+</div>
+
+</div>
+
+
+
+
+<div>
+
+<label class="font-bold text-sm">
+👤 付款人
+</label>
+
+
+<select class="w-full mt-2 p-3 border rounded-lg">
+
+<option>阿翔</option>
+<option>橘子</option>
+<option>凱婷</option>
+<option>蘇</option>
+
+</select>
+
+
+</div>
+
+
+
+
+<button class="w-full bg-stone-800 text-white rounded-lg p-3 font-bold">
+
+＋ 新增紀錄
+
+</button>
+
+
+
+</div>
+
+
+</div>
 
 
 </section>
 
 
 </main>
+
+
 
 
 <footer class="bg-stone-100 py-4 text-center text-xs text-stone-400 font-bold">
