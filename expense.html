@@ -1274,15 +1274,10 @@ data.person
 
 
 let csv =
-
 rows
-
 .map(row =>
-
-row.join(",")
-
+row.map(item => `"${item}"`).join(",")
 )
-
 .join("\n");
 
 
