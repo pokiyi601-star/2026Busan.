@@ -398,11 +398,27 @@ class="hidden w-full bg-stone-200 text-stone-700 rounded-2xl p-4 font-bold mt-3"
 <section class="soft-card p-6 mt-6">
 
 
-<h2 class="text-xl font-black mb-5">
+<div class="flex justify-between items-center mb-5">
+
+<h2 class="text-xl font-black">
 
 📒 花費紀錄
 
 </h2>
+
+
+<button
+
+onclick="exportExcel()"
+
+class="bg-stone-800 text-white px-4 py-2 rounded-xl text-sm font-bold">
+
+📥 匯出 Excel
+
+</button>
+
+
+</div>
 
 
 <div id="expenseList" class="space-y-3">
@@ -1123,7 +1139,130 @@ Math.round(totalWon*exchangeRate)
 }
 
 
+async function exportExcel(){
 
+
+const snapshot =
+
+await window.firebaseFns.getDocs(
+
+window.firebaseFns.collection(
+
+window.db,
+
+"expenses"
+
+)
+
+);
+
+
+
+let rows = [];
+
+
+rows.push([
+
+"日期",
+
+"項目",
+
+"韓幣",
+
+"台幣",
+
+"付款方式",
+
+"付款人"
+
+]);
+
+
+
+
+snapshot.forEach((doc)=>{
+
+
+let data = doc.data();
+
+
+rows.push([
+
+data.date,
+
+data.item,
+
+data.won,
+
+data.twd,
+
+data.payment,
+
+data.person
+
+]);
+
+
+});
+
+
+
+
+
+let csv =
+
+rows
+
+.map(row =>
+
+row.join(",")
+
+)
+
+.join("\n");
+
+
+
+
+
+let blob = new Blob(
+
+[
+
+"\ufeff"+csv
+
+],
+
+{
+
+type:"text/csv;charset=utf-8;"
+
+}
+
+);
+
+
+
+
+let link = document.createElement("a");
+
+
+
+link.href = URL.createObjectURL(blob);
+
+
+
+link.download =
+
+"2026釜山旅費紀錄.csv";
+
+
+
+link.click();
+
+
+
+}
 
 
 
