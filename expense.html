@@ -40,22 +40,16 @@ body{
     width:100%;
     margin-top:8px;
     padding:14px;
-
     background:#faf8f4;
-
     border-radius:14px;
-
     border:none;
-
     outline:none;
 
 }
 
 
 .input-style:focus{
-
     box-shadow:0 0 0 2px #d6cfc5;
-
 }
 
 
@@ -63,21 +57,16 @@ body{
 .pay-btn{
 
     padding:14px;
-
     border-radius:14px;
-
     background:#f3f0eb;
-
     font-weight:700;
 
 }
 
 
-
 .selected{
 
     background:#292524;
-
     color:white;
 
 }
@@ -87,19 +76,28 @@ body{
 .expense-card{
 
     background:#faf8f4;
-
     border-radius:18px;
-
     padding:18px;
 
 }
 
 
 
+.action-btn{
+
+    font-size:13px;
+    padding:6px 12px;
+    border-radius:10px;
+    background:#eee9e1;
+    font-weight:bold;
+
+}
+
+
 </style>
 
-</head>
 
+</head>
 
 
 <body class="text-stone-800 p-3 md:p-8">
@@ -108,9 +106,7 @@ body{
 <div class="max-w-4xl mx-auto travel-book min-h-screen">
 
 
-
 <header class="bg-stone-100 py-10 text-center rounded-t-[24px]">
-
 
 <h1 class="text-3xl font-black">
 
@@ -130,12 +126,7 @@ Busan Travel Expenses
 
 
 
-
-
 <main class="p-6 md:p-10">
-
-
-
 
 
 <section class="soft-card p-6 mb-6">
@@ -148,7 +139,7 @@ Busan Travel Expenses
 </h2>
 
 
-<div class="flex gap-3 items-center">
+<div class="flex gap-3">
 
 
 <input
@@ -178,18 +169,7 @@ class="bg-stone-800 text-white px-5 rounded-xl font-bold">
 </div>
 
 
-<p class="text-xs text-stone-400 mt-2">
-
-例如：1韓元 = 0.024台幣
-
-</p>
-
-
 </section>
-
-
-
-
 
 
 
@@ -203,13 +183,10 @@ class="bg-stone-800 text-white px-5 rounded-xl font-bold">
 </h2>
 
 
-
 <div class="grid grid-cols-2 gap-4">
 
 
-
 <div class="bg-stone-50 rounded-2xl p-5">
-
 
 <p class="text-xs text-stone-500">
 
@@ -217,10 +194,7 @@ class="bg-stone-800 text-white px-5 rounded-xl font-bold">
 
 </p>
 
-
-<p id="totalWon"
-
-class="text-xl font-black mt-2">
+<p id="totalWon" class="text-xl font-black mt-2">
 
 ₩0
 
@@ -230,11 +204,7 @@ class="text-xl font-black mt-2">
 </div>
 
 
-
-
-
 <div class="bg-stone-50 rounded-2xl p-5">
-
 
 <p class="text-xs text-stone-500">
 
@@ -242,10 +212,7 @@ class="text-xl font-black mt-2">
 
 </p>
 
-
-<p id="totalTwd"
-
-class="text-xl font-black mt-2">
+<p id="totalTwd" class="text-xl font-black mt-2">
 
 NT$0
 
@@ -255,111 +222,59 @@ NT$0
 </div>
 
 
-
 </div>
-
 
 
 </section>
 
 
 
-
-
-
 <section class="soft-card p-6">
 
 
-<h2 class="text-xl font-black mb-5">
+<h2 id="formTitle" class="text-xl font-black mb-5">
 
 ➕ 新增花費
 
 </h2>
 
 
+<input type="hidden" id="editId">
+
+
 
 <div class="space-y-5">
 
 
-
 <div>
 
-<label class="font-bold text-sm">
+<label class="font-bold text-sm">📅 日期</label>
 
-📅 日期
-
-</label>
-
-
-<input
-
-id="date"
-
-type="date"
-
-class="input-style">
-
+<input id="date" type="date" class="input-style">
 
 </div>
 
 
-
-
-
 <div>
 
-<label class="font-bold text-sm">
+<label class="font-bold text-sm">📝 項目</label>
 
-📝 項目
-
-</label>
-
-
-<input
-
-id="item"
-
-type="text"
-
-placeholder="例如：機場接送"
-
-class="input-style">
-
+<input id="item" type="text" placeholder="例如：機場接送" class="input-style">
 
 </div>
 
 
-
-
-
 <div>
 
-<label class="font-bold text-sm">
+<label class="font-bold text-sm">🇰🇷 韓幣金額</label>
 
-🇰🇷 韓幣金額
+<input id="won" type="number" class="input-style">
 
-</label>
-
-
-<input
-
-id="won"
-
-type="number"
-
-placeholder="例如：7500"
-
-class="input-style">
-
-
-<p id="previewTwd"
-
-class="text-sm text-stone-500 mt-2">
+<p id="previewTwd" class="text-sm text-stone-500 mt-2">
 
 約 NT$0
 
 </p>
-
 
 </div>
 
@@ -402,18 +317,14 @@ class="pay-btn">
 </button>
 
 
-
 </div>
 
-
 </div>
-
 
 
 
 
 <div>
-
 
 <label class="font-bold text-sm">
 
@@ -422,13 +333,7 @@ class="pay-btn">
 </label>
 
 
-
-<select
-
-id="person"
-
-class="input-style">
-
+<select id="person" class="input-style">
 
 <option>阿翔</option>
 
@@ -437,7 +342,6 @@ class="input-style">
 <option>凱婷</option>
 
 <option>蘇</option>
-
 
 </select>
 
@@ -451,12 +355,30 @@ class="input-style">
 
 <button
 
-onclick="addExpense()"
+id="submitBtn"
+
+onclick="saveExpense()"
 
 class="w-full bg-stone-800 text-white rounded-2xl p-4 font-bold">
 
 
 ＋ 新增紀錄
+
+
+</button>
+
+
+
+<button
+
+id="cancelBtn"
+
+onclick="cancelEdit()"
+
+class="hidden w-full bg-stone-200 text-stone-700 rounded-2xl p-4 font-bold mt-3">
+
+
+取消編輯
 
 
 </button>
@@ -473,7 +395,6 @@ class="w-full bg-stone-800 text-white rounded-2xl p-4 font-bold">
 
 
 
-
 <section class="soft-card p-6 mt-6">
 
 
@@ -484,11 +405,7 @@ class="w-full bg-stone-800 text-white rounded-2xl p-4 font-bold">
 </h2>
 
 
-<div
-
-id="expenseList"
-
-class="space-y-3">
+<div id="expenseList" class="space-y-3">
 
 
 <p class="text-stone-400 text-sm">
@@ -505,27 +422,19 @@ class="space-y-3">
 
 
 
-
-
 </main>
 
 
 
 
 
-
-
-<footer
-
-class="bg-stone-100 py-4 text-center text-xs text-stone-400 font-bold rounded-b-[24px]">
+<footer class="bg-stone-100 py-4 text-center text-xs text-stone-400 font-bold rounded-b-[24px]">
 
 
 ⚠️ 溫馨提醒‼️ 是免稅！不是免費！！！🛍️
 
 
 </footer>
-
-
 
 
 </div>
@@ -546,8 +455,6 @@ let exchangeRate=0.024;
 
 
 
-
-
 function formatNumber(num){
 
 return Number(num).toLocaleString("zh-TW");
@@ -557,6 +464,18 @@ return Number(num).toLocaleString("zh-TW");
 
 
 
+let savedRate =
+localStorage.getItem("busanRate");
+
+
+if(savedRate){
+
+exchangeRate =
+Number(savedRate);
+
+}
+
+
 
 
 
@@ -564,10 +483,12 @@ function saveRate(){
 
 
 exchangeRate =
-Number(
-document.getElementById("exchangeRate").value
-);
 
+Number(
+
+document.getElementById("exchangeRate").value
+
+);
 
 
 localStorage.setItem(
@@ -576,15 +497,10 @@ exchangeRate
 );
 
 
-
-alert("匯率更新完成");
-
-
 loadExpenses();
 
 
 }
-
 
 
 
@@ -598,41 +514,22 @@ paymentMethod=method;
 
 
 
-document
-.getElementById("cashBtn")
-.classList.remove("selected");
+cashBtn.classList.remove("selected");
+
+cardBtn.classList.remove("selected");
 
 
 
-document
-.getElementById("cardBtn")
-.classList.remove("selected");
+if(method==="現金")
+
+cashBtn.classList.add("selected");
 
 
 
+if(method==="刷卡")
 
+cardBtn.classList.add("selected");
 
-if(method==="現金"){
-
-
-document
-.getElementById("cashBtn")
-.classList.add("selected");
-
-
-}
-
-
-
-if(method==="刷卡"){
-
-
-document
-.getElementById("cardBtn")
-.classList.add("selected");
-
-
-}
 
 
 }
@@ -643,267 +540,25 @@ document
 
 
 
-document
+document.getElementById("won")
 
-.getElementById("won")
-
-.addEventListener(
-
-"input",
-
-function(){
+.addEventListener("input",()=>{
 
 
 let won =
-Number(this.value)||0;
+Number(document.getElementById("won").value)||0;
 
 
 
-document
+previewTwd.innerText =
 
-.getElementById("previewTwd")
-
-.innerText =
-
-"約 NT$" +
+"約 NT$"+
 
 formatNumber(
-Math.round(
-won*exchangeRate
-)
-);
 
-
-}
+Math.round(won*exchangeRate)
 
 );
-
-
-
-
-
-
-
-let savedRate =
-localStorage.getItem("busanRate");
-
-
-
-if(savedRate){
-
-
-exchangeRate =
-Number(savedRate);
-
-
-
-document.getElementById("exchangeRate").value =
-exchangeRate;
-
-
-}
-
-
-
-
-
-
-</script>
-
-
-
-
-
-
-
-
-<script type="module">
-
-
-import { db }
-
-from "./firebase-config.js";
-
-
-
-import {
-
-
-collection,
-
-addDoc,
-
-getDocs,
-
-serverTimestamp
-
-
-}
-
-from
-
-"https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-
-
-
-
-
-
-
-window.addExpense = async function(){
-
-
-
-let date =
-document.getElementById("date").value;
-
-
-
-let item =
-document.getElementById("item").value;
-
-
-
-let won =
-Number(
-document.getElementById("won").value
-);
-
-
-
-let person =
-document.getElementById("person").value;
-
-
-
-
-
-
-if(!item || !won){
-
-
-alert("請輸入項目和金額");
-
-return;
-
-
-}
-
-
-
-if(!paymentMethod){
-
-
-alert("請選擇付款方式");
-
-return;
-
-
-}
-
-
-
-
-
-
-
-await addDoc(
-
-collection(db,"expenses"),
-
-{
-
-
-date,
-
-item,
-
-won,
-
-
-twd:
-
-Math.round(
-won*exchangeRate
-),
-
-
-payment:
-
-paymentMethod,
-
-
-person,
-
-
-createdAt:
-
-serverTimestamp()
-
-
-}
-
-
-);
-
-
-
-alert("新增成功");
-
-
-
-document.getElementById("item").value="";
-
-document.getElementById("won").value="";
-
-
-
-loadExpenses();
-
-
-
-}
-async function loadExpenses(){
-
-
-const list =
-
-document.getElementById("expenseList");
-
-
-
-list.innerHTML="";
-
-
-
-let totalWon = 0;
-
-
-
-let snapshot =
-
-await getDocs(
-
-collection(db,"expenses")
-
-);
-
-
-
-
-
-let expenses=[];
-
-
-
-snapshot.forEach((doc)=>{
-
-
-let data=doc.data();
-
-
-expenses.push(data);
-
 
 
 });
@@ -912,47 +567,193 @@ expenses.push(data);
 
 
 
-expenses.sort(
 
-(a,b)=>
 
-new Date(b.date)
+import("./firebase-config.js")
 
--
+.then(async({db})=>{
 
-new Date(a.date)
+
+window.db=db;
+
+
+
+const {
+
+collection,
+
+addDoc,
+
+getDocs,
+
+doc,
+
+updateDoc,
+
+deleteDoc,
+
+serverTimestamp
+
+}=await import(
+
+"https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js"
 
 );
 
 
 
+window.firebaseFns={
+
+collection,
+
+addDoc,
+
+getDocs,
+
+doc,
+
+updateDoc,
+
+deleteDoc,
+
+serverTimestamp
+
+};
+
+
+
+loadExpenses();
+
+
+});
 
 
 
 
-if(expenses.length===0){
-
-
-list.innerHTML=
-
-`
-
-<p class="text-stone-400 text-sm">
-
-目前還沒有紀錄
-
-</p>
-
-`;
 
 
 
-document.getElementById("totalWon").innerText="₩0";
+async function saveExpense(){
 
-document.getElementById("totalTwd").innerText="NT$0";
 
+
+let id =
+document.getElementById("editId").value;
+
+
+
+let data={
+
+
+date:
+date.value,
+
+
+item:
+item.value,
+
+
+won:
+Number(won.value),
+
+
+twd:
+
+Math.round(
+
+Number(won.value)*exchangeRate
+
+),
+
+
+payment:
+paymentMethod,
+
+
+person:
+person.value
+
+
+};
+
+
+
+
+
+if(!data.item || !data.won){
+
+alert("請輸入資料");
 
 return;
+
+}
+
+
+
+if(!paymentMethod){
+
+alert("請選付款方式");
+
+return;
+
+}
+
+
+if(id){
+
+
+await window.firebaseFns.updateDoc(
+
+window.firebaseFns.doc(
+window.db,
+"expenses",
+id
+),
+
+data
+
+);
+
+
+alert("修改完成");
+
+
+}
+
+else{
+
+
+await window.firebaseFns.addDoc(
+
+window.firebaseFns.collection(
+window.db,
+"expenses"
+),
+
+{
+
+...data,
+
+createdAt:
+window.firebaseFns.serverTimestamp()
+
+}
+
+);
+
+
+alert("新增完成");
+
+
+}
+
+
+
+
+clearForm();
+
+loadExpenses();
+
 
 
 }
@@ -963,8 +764,229 @@ return;
 
 
 
-expenses.forEach((data)=>{
 
+function editExpense(data,id){
+
+
+
+document.getElementById("editId").value=id;
+
+
+document.getElementById("date").value=data.date;
+
+
+document.getElementById("item").value=data.item;
+
+
+document.getElementById("won").value=data.won;
+
+
+document.getElementById("person").value=data.person;
+
+
+
+paymentMethod=data.payment;
+
+
+
+selectPayment(paymentMethod);
+
+
+
+document.getElementById("formTitle").innerText=
+
+"✏️ 編輯花費";
+
+
+document.getElementById("submitBtn").innerText=
+
+"更新紀錄";
+
+
+document.getElementById("cancelBtn")
+
+.classList.remove("hidden");
+
+
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+
+}
+
+
+
+
+
+
+
+function cancelEdit(){
+
+
+clearForm();
+
+
+}
+
+
+
+
+
+function clearForm(){
+
+
+document.getElementById("editId").value="";
+
+
+document.getElementById("item").value="";
+
+
+document.getElementById("won").value="";
+
+
+document.getElementById("formTitle").innerText=
+
+"➕ 新增花費";
+
+
+document.getElementById("submitBtn").innerText=
+
+"＋ 新增紀錄";
+
+
+document.getElementById("cancelBtn")
+
+.classList.add("hidden");
+
+
+paymentMethod="";
+
+
+cashBtn.classList.remove("selected");
+
+cardBtn.classList.remove("selected");
+
+
+}
+
+
+
+
+
+
+
+
+async function deleteExpense(id){
+
+
+
+if(!confirm("確定要刪除此筆旅費嗎？"))
+
+return;
+
+
+
+await window.firebaseFns.deleteDoc(
+
+window.firebaseFns.doc(
+
+window.db,
+
+"expenses",
+
+id
+
+)
+
+);
+
+
+
+loadExpenses();
+
+
+
+}
+
+
+
+
+
+
+
+async function loadExpenses(){
+
+
+
+const list =
+document.getElementById("expenseList");
+
+
+
+list.innerHTML="";
+
+
+
+let totalWon=0;
+
+
+
+let snapshot=
+
+await window.firebaseFns.getDocs(
+
+window.firebaseFns.collection(
+
+window.db,
+
+"expenses"
+
+)
+
+);
+
+
+
+
+let arr=[];
+
+
+
+snapshot.forEach((d)=>{
+
+
+arr.push({
+
+id:d.id,
+
+...d.data()
+
+});
+
+
+});
+
+
+
+arr.sort(
+
+(a,b)=>
+
+new Date(b.date)-new Date(a.date)
+
+);
+
+
+
+
+
+arr.forEach((data)=>{
 
 
 totalWon += Number(data.won);
@@ -985,7 +1007,6 @@ list.innerHTML +=
 
 <div>
 
-
 <p class="font-black text-lg">
 
 ${data.item}
@@ -993,7 +1014,7 @@ ${data.item}
 </p>
 
 
-<p class="text-sm text-stone-500 mt-1">
+<p class="text-sm text-stone-500">
 
 📅 ${data.date}
 
@@ -1001,8 +1022,6 @@ ${data.item}
 
 
 </div>
-
-
 
 
 
@@ -1018,13 +1037,7 @@ ${data.item}
 
 <p class="text-sm text-stone-500">
 
-NT$${formatNumber(
-
-data.twd ||
-
-Math.round(data.won*exchangeRate)
-
-)}
+NT$${formatNumber(data.twd)}
 
 </p>
 
@@ -1040,12 +1053,40 @@ Math.round(data.won*exchangeRate)
 
 <div class="mt-3 text-sm text-stone-600">
 
-
 ${data.payment}
 
-｜
+｜👤 ${data.person}
 
-👤 ${data.person}
+</div>
+
+
+
+
+<div class="flex gap-2 mt-4">
+
+
+<button
+
+onclick='editExpense(${JSON.stringify(data)}, "${data.id}")'
+
+class="action-btn">
+
+✏️ 編輯
+
+</button>
+
+
+
+<button
+
+onclick="deleteExpense('${data.id}')"
+
+class="action-btn">
+
+🗑 刪除
+
+</button>
+
 
 
 </div>
@@ -1053,7 +1094,6 @@ ${data.payment}
 
 
 </div>
-
 
 `;
 
@@ -1064,43 +1104,19 @@ ${data.payment}
 
 
 
+document.getElementById("totalWon").innerText=
+
+"₩"+formatNumber(totalWon);
 
 
 
+document.getElementById("totalTwd").innerText=
 
-document
+"NT$"+formatNumber(
 
-.getElementById("totalWon")
-
-.innerText =
-
-"₩" +
-
-formatNumber(totalWon);
-
-
-
-
-
-
-document
-
-.getElementById("totalTwd")
-
-.innerText =
-
-"NT$" +
-
-formatNumber(
-
-Math.round(
-
-totalWon * exchangeRate
-
-)
+Math.round(totalWon*exchangeRate)
 
 );
-
 
 
 
@@ -1108,10 +1124,6 @@ totalWon * exchangeRate
 
 
 
-
-
-
-loadExpenses();
 
 
 
