@@ -347,7 +347,8 @@ import { db } from "./firebase-config.js";
 
 import { 
 collection,
-addDoc
+addDoc,
+getDocs
 } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
 
@@ -424,7 +425,50 @@ alert("新增失敗");
 
 }
 
+async function loadExpenses(){
 
+    const list = document.getElementById("expenseList");
+
+    list.innerHTML = "";
+
+    const querySnapshot = await getDocs(collection(db,"expenses"));
+
+
+    querySnapshot.forEach((doc)=>{
+
+        const data = doc.data();
+
+
+        list.innerHTML += `
+
+        <div class="bg-stone-50 border rounded-lg p-4">
+
+            <p class="font-bold">
+            ${data.item}
+            </p>
+
+            <p class="text-sm text-stone-600">
+            📅 ${data.date}
+            </p>
+
+            <p class="text-sm">
+            ₩ ${data.won}
+            </p>
+
+            <p class="text-sm">
+            ${data.payment} ｜ 👤 ${data.person}
+            </p>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+loadExpenses();
 
 </script>
 </body>
