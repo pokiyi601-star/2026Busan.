@@ -325,7 +325,92 @@ alert(
 </script>
 
 
+<script type="module">
 
+import { db } from "./firebase-config.js";
+
+import { 
+collection,
+addDoc
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+
+
+window.addExpense = async function(){
+
+
+let date =
+document.getElementById("date").value;
+
+
+let item =
+document.getElementById("item").value;
+
+
+let won =
+document.getElementById("won").value;
+
+
+let person =
+document.getElementById("person").value;
+
+
+
+if(!item || !won){
+
+alert("請輸入項目和金額");
+
+return;
+
+}
+
+
+
+try{
+
+
+await addDoc(collection(db,"expenses"),{
+
+
+date: date,
+
+item: item,
+
+won: Number(won),
+
+payment: paymentMethod,
+
+person: person,
+
+createdAt: new Date()
+
+
+});
+
+
+
+alert("旅費新增成功！");
+
+
+}
+
+
+catch(error){
+
+
+console.error(error);
+
+alert("新增失敗");
+
+
+}
+
+
+}
+
+
+
+</script>
 </body>
 
 </html>
