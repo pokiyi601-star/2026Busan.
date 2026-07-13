@@ -238,6 +238,50 @@ class="w-full mt-2 p-3 border rounded-lg">
 </div>
 
 
+<script>
+
+let paymentMethod = "";
+
+function selectPayment(method){
+
+    paymentMethod = method;
+
+    document.getElementById("cashBtn").classList.remove(
+        "bg-stone-800",
+        "text-white"
+    );
+
+    document.getElementById("cardBtn").classList.remove(
+        "bg-stone-800",
+        "text-white"
+    );
+
+
+    if(method === "cash"){
+
+        document.getElementById("cashBtn").classList.add(
+            "bg-stone-800",
+            "text-white"
+        );
+
+    }
+
+
+    if(method === "card"){
+
+        document.getElementById("cardBtn").classList.add(
+            "bg-stone-800",
+            "text-white"
+        );
+
+    }
+
+
+}
+
+</script>
+
+
 </body>
 
 </html>
