@@ -286,7 +286,7 @@ NT$0
 
 <label class="font-bold text-sm">
 
-💳 刷卡手續費（選填）
+💳 刷卡手續費（選填【等銀行出帳後填寫】）
 
 </label>
 
@@ -475,7 +475,7 @@ class="bg-stone-800 text-white px-4 py-2 rounded-xl text-sm font-bold">
 <footer class="bg-stone-100 py-4 text-center text-xs text-stone-400 font-bold rounded-b-[24px]">
 
 
-⚠️ 溫馨提醒‼️ 是免稅！不是免費！！！🛍️
+⚠️ 溫馨提醒‼️ 是免稅！不是免費！！！🌝
 
 
 </footer>
@@ -1252,13 +1252,13 @@ data.date,
 
 data.item,
 
-data.won,
+"₩" + Number(data.won).toLocaleString(),
 
-data.twd,
+"NT$" + Number(data.twd).toLocaleString(),
 
-data.fee || 0,
+"NT$" + Number(data.fee || 0).toLocaleString(),
 
-data.totalTwd || data.twd,
+"NT$" + Number(data.totalTwd || data.twd).toLocaleString(),
 
 data.payment,
 
