@@ -1,4 +1,4 @@
-哦!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-TW">
 
 <head>
@@ -1378,14 +1378,13 @@ downloadExcel(blob,fileName);
 
 
 }
-
 function downloadExcel(blob,fileName){
 
-    let fileURL = URL.createObjectURL(blob);
+    let url = URL.createObjectURL(blob);
 
     let a = document.createElement("a");
 
-    a.href = fileURL;
+    a.href = url;
 
     a.download = fileName;
 
@@ -1393,11 +1392,11 @@ function downloadExcel(blob,fileName){
 
     a.click();
 
+    document.body.removeChild(a);
+
     setTimeout(()=>{
 
-        document.body.removeChild(a);
-
-        URL.revokeObjectURL(fileURL);
+        URL.revokeObjectURL(url);
 
     },1000);
 
