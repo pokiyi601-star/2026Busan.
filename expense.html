@@ -1378,38 +1378,7 @@ let blob = new Blob(
 
 let fileName = "2026釜山旅費紀錄.xlsx";
 
-if (navigator.share && navigator.canShare) {
-
-    let file = new File(
-        [blob],
-        fileName,
-        {
-            type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        }
-    );
-
-
-    if(navigator.canShare({files:[file]})){
-
-        await navigator.share({
-
-            files:[file],
-
-            title:"2026釜山旅費紀錄"
-
-        });
-
-    }else{
-
-        downloadExcel(blob,fileName);
-
-    }
-
-}else{
-
-    downloadExcel(blob,fileName);
-
-}
+downloadExcel(blob,fileName);
 
 }
 
