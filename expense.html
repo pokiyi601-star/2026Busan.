@@ -385,7 +385,19 @@ class="pay-btn">
 </div>
 
 
+<div>
 
+<label class="font-bold text-sm">
+📝 備註（選填）
+</label>
+
+<input
+id="note"
+type="text"
+placeholder="例如：四人平分、代墊、免稅商品..."
+class="input-style">
+
+</div>
 
 
 
@@ -746,6 +758,8 @@ payment: paymentMethod,
 
 person: person.value
 
+note: note.value
+
 };
 
 
@@ -854,7 +868,7 @@ document.getElementById("won").value=data.won;
 
 
 document.getElementById("person").value=data.person;
-
+document.getElementById("note").value = data.note || "";
 
 
 paymentMethod=data.payment;
@@ -920,6 +934,7 @@ document.getElementById("item").value="";
 
 
 document.getElementById("won").value="";
+document.getElementById("note").value="";
 
 
 document.getElementById("formTitle").innerText=
@@ -1149,6 +1164,16 @@ ${data.fee ?
 ${data.payment}
 
 ｜👤 ${data.person}
+
+${data.note ? 
+`
+<div class="mt-2 text-stone-500">
+📝 ${data.note}
+</div>
+`
+:
+""
+}
 
 </div>
 
