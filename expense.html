@@ -160,6 +160,14 @@ class="input-style">
 
 </p>
 
+<p
+id="rateWarning"
+class="hidden text-xs text-red-600 font-bold mt-2">
+
+⚠️ 已修改匯率，記得按「儲存」才會套用到新的花費紀錄！
+
+</p>
+
 
 <button
 
@@ -519,30 +527,51 @@ Number(savedRate);
 
 }
 
+document.getElementById("exchangeRate").value = exchangeRate;
+
+document.getElementById("exchangeRate").addEventListener("input", () => {
+
+const currentRate = Number(document.getElementById("exchangeRate").value);
+
+if(currentRate !== exchangeRate){
+
+document.getElementById("rateWarning").classList.remove("hidden");
+
+}else{
+
+document.getElementById("rateWarning").classList.add("hidden");
+
+}
+
+});
+
 
 
 
 
 function saveRate(){
 
-
-exchangeRate =
-
-Number(
-
+exchangeRate = Number(
 document.getElementById("exchangeRate").value
-
 );
-
 
 localStorage.setItem(
 "busanRate",
 exchangeRate
 );
 
+// ⭐ 儲存後隱藏提醒
+document.getElementById("rateWarning").classList.add("hidden");
+
+// ⭐ 如果韓幣金額已經有輸入，同步更新下面的預估台幣
+let won = Number(document.getElementById("won").value) || 0;
+
+document.getElementById("previewTwd").innerText =
+"約 NT$" + formatNumber(
+Math.round(won / exchangeRate)
+);
 
 loadExpenses();
-
 
 }
 
