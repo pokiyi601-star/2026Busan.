@@ -9,6 +9,7 @@
 <title>💰 2026釜山旅費紀錄</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 
 <style>
 
@@ -1252,72 +1253,43 @@ document.getElementById("totalTwd").innerText=
 
 }
 
-
 async function exportExcel(){
 
-
 const snapshot =
-
 await window.firebaseFns.getDocs(
 
 window.firebaseFns.collection(
-
 window.db,
-
 "expenses"
-
 )
 
 );
 
 
+let arr=[];
 
-let rows = [];
-
-
-rows.push([
-
-"日期",
-
-"添加時間",
-
-"項目",
-
-"韓幣",
-
-"台幣換算",
-
-"刷卡手續費",
-
-"實際支出",
-
-"付款方式",
-
-"付款人",
-
-"備註"
-
-]);
-
-
-
-
-let arr = [];
 
 snapshot.forEach((doc)=>{
 
 arr.push({
-id: doc.id,
+
+id:doc.id,
+
 ...doc.data()
-});
 
 });
 
+});
+
+
+// 最新新增排最上面
 
 arr.sort((a,b)=>{
 
 if(!a.createdAt || !b.createdAt){
+
 return 0;
+
 }
 
 return b.createdAt.seconds - a.createdAt.seconds;
@@ -1326,93 +1298,78 @@ return b.createdAt.seconds - a.createdAt.seconds;
 
 
 
-arr.forEach((data)=>{
+let data = arr.map((item)=>({
 
+"日期": item.date,
 
-rows.push([
+"添加時間":
 
-data.date,
+item.createdAt
 
-data.createdAt
 ?
-new Date(data.createdAt.seconds * 1000).toLocaleString("zh-TW")
+
+new Date(item.createdAt.seconds*1000)
+.toLocaleString("zh-TW")
+
 :
+
 "",
 
-data.item,
+"項目": item.item,
 
-"₩" + Number(data.won).toLocaleString(),
+"韓幣": "₩"+Number(item.won).toLocaleString(),
 
-"NT$" + Number(data.twd).toLocaleString(),
+"台幣換算": "NT$"+Number(item.twd).toLocaleString(),
 
-"NT$" + Number(data.fee || 0).toLocaleString(),
+"匯率": "₩"+(item.rate || 46)+" = NT$1",
 
-"NT$" + Number(data.totalTwd || data.twd).toLocaleString(),
+"刷卡手續費":
+"NT$"+Number(item.fee || 0).toLocaleString(),
 
-data.payment,
+"實際支出":
+"NT$"+Number(item.totalTwd || item.twd).toLocaleString(),
 
-data.person,
+"付款方式": item.payment,
 
-data.note || ""
+"付款人": item.person,
 
-]);
+"備註": item.note || ""
 
-
-});
-
-
-
-
-
-let csv =
-rows
-.map(row =>
-row.map(item => `"${item}"`).join(",")
-)
-.join("\n");
+}));
 
 
 
+let worksheet =
+XLSX.utils.json_to_sheet(data);
 
 
-let blob = new Blob(
+let workbook =
+XLSX.utils.book_new();
 
-[
 
-"\ufeff"+csv
+XLSX.utils.book_append_sheet(
 
-],
+workbook,
 
-{
+worksheet,
 
-type:"text/csv;charset=utf-8;"
-
-}
+"旅費紀錄"
 
 );
 
 
 
+XLSX.writeFile(
 
-let link = document.createElement("a");
+workbook,
 
+"2026釜山旅費紀錄.xlsx"
 
-
-link.href = URL.createObjectURL(blob);
-
-
-
-link.download =
-
-"2026釜山旅費紀錄.csv";
-
-
-
-link.click();
-
+);
 
 
 }
+
 
 
 
