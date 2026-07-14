@@ -1385,21 +1385,37 @@ downloadExcel(blob,fileName);
 
 function downloadExcel(blob,fileName){
 
-    let link = document.createElement("a");
+    let file = new File(
+        [blob],
+        fileName,
+        {
+            type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        }
+    );
 
-    let url = URL.createObjectURL(blob);
 
-    link.href = url;
+    if(navigator.share){
 
-    link.download = fileName;
+        navigator.share({
 
-    document.body.appendChild(link);
+            files:[file],
 
-    link.click();
+            title:fileName
 
-    document.body.removeChild(link);
+        })
+        .catch((error)=>{
 
-    URL.revokeObjectURL(url);
+            console.log(error);
+
+        });
+
+    }else{
+
+        let url = URL.createObjectURL(blob);
+
+        window.open(url,"_blank");
+
+    }
 
 }
 
