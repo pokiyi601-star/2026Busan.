@@ -1408,45 +1408,8 @@ function downloadExcel(blob,fileName){
 
 }
 
-    let file = new File(
-        [blob],
-        fileName,
-        {
-            type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        }
-    );
 
 
-    if(
-        navigator.share &&
-        navigator.canShare &&
-        navigator.canShare({files:[file]})
-    ){
-
-        await navigator.share({
-
-            files:[file]
-
-        });
-
-
-    }else{
-
-        let url = URL.createObjectURL(blob);
-
-        let a = document.createElement("a");
-
-        a.href = url;
-
-        a.download = fileName;
-
-        a.click();
-
-        URL.revokeObjectURL(url);
-
-    }
-
-}
 
 
 
