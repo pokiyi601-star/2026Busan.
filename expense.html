@@ -1382,8 +1382,7 @@ downloadExcel(blob,fileName);
 
 }
 
-
-function downloadExcel(blob,fileName){
+async function downloadExcel(blob,fileName){
 
     let file = new File(
         [blob],
@@ -1394,30 +1393,37 @@ function downloadExcel(blob,fileName){
     );
 
 
-    if(navigator.share){
+    if(
+        navigator.share &&
+        navigator.canShare &&
+        navigator.canShare({files:[file]})
+    ){
 
-        navigator.share({
+        await navigator.share({
 
-            files:[file],
-
-            title:fileName
-
-        })
-        .catch((error)=>{
-
-            console.log(error);
+            files:[file]
 
         });
+
 
     }else{
 
         let url = URL.createObjectURL(blob);
 
-        window.open(url,"_blank");
+        let a = document.createElement("a");
+
+        a.href = url;
+
+        a.download = fileName;
+
+        a.click();
+
+        URL.revokeObjectURL(url);
 
     }
 
 }
+
 
 
 
