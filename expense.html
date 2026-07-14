@@ -720,41 +720,6 @@ person: person.value
 };
 
 
-date:
-date.value,
-
-
-item:
-item.value,
-
-
-won:
-Number(won.value),
-
-
-twd:
-twdAmount,
-
-
-fee:
-feeAmount,
-
-
-totalTwd:
-twdAmount + feeAmount,
-
-
-payment:
-paymentMethod,
-
-
-person:
-person.value
-
-
-};
-
-
 
 
 
@@ -1012,6 +977,7 @@ list.innerHTML="";
 
 
 let totalWon=0;
+let totalTwd=0;
 
 
 
@@ -1068,6 +1034,8 @@ arr.forEach((data)=>{
 
 
 totalWon += Number(data.won);
+
+totalTwd += Number(data.twd);
 
 
 
@@ -1204,11 +1172,7 @@ document.getElementById("totalWon").innerText=
 
 document.getElementById("totalTwd").innerText=
 
-"NT$"+formatNumber(
-
-Math.round(totalWon/exchangeRate)
-
-);
+"NT$"+formatNumber(totalTwd);
 
 
 
