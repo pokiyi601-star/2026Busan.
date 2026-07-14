@@ -1302,10 +1302,31 @@ rows.push([
 
 
 
+let arr = [];
+
 snapshot.forEach((doc)=>{
 
+arr.push({
+id: doc.id,
+...doc.data()
+});
 
-let data = doc.data();
+});
+
+
+arr.sort((a,b)=>{
+
+if(!a.createdAt || !b.createdAt){
+return 0;
+}
+
+return b.createdAt.seconds - a.createdAt.seconds;
+
+});
+
+
+
+arr.forEach((data)=>{
 
 
 rows.push([
