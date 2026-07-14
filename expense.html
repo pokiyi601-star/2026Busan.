@@ -1255,6 +1255,11 @@ document.getElementById("totalTwd").innerText=
 
 async function exportExcel(){
 
+if(!window.firebaseFns || !window.db){
+    alert("資料載入中，請稍等一下再匯出");
+    return;
+}
+
 
 const snapshot =
 await window.firebaseFns.getDocs(
@@ -1339,7 +1344,13 @@ new Date(item.createdAt.seconds*1000)
 }));
 
 
+if(data.length===0){
 
+alert("目前沒有旅費紀錄");
+
+return;
+
+}
 let worksheet =
 XLSX.utils.json_to_sheet(data);
 
@@ -1380,9 +1391,11 @@ downloadExcel(blob,fileName);
 }
 function downloadExcel(blob,fileName){
 
-    let url = URL.createObjectURL(blob);
+    const url = URL.createObjectURL(blob);
 
-    let a = document.createElement("a");
+    const a = document.createElement("a");
+
+    a.style.display = "none";
 
     a.href = url;
 
@@ -1392,13 +1405,13 @@ function downloadExcel(blob,fileName){
 
     a.click();
 
-    document.body.removeChild(a);
-
     setTimeout(()=>{
+
+        document.body.removeChild(a);
 
         URL.revokeObjectURL(url);
 
-    },1000);
+    },2000);
 
 }
 
