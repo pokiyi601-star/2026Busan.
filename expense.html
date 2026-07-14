@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+哦!DOCTYPE html>
 <html lang="zh-TW">
 
 <head>
@@ -1255,9 +1255,6 @@ document.getElementById("totalTwd").innerText=
 
 async function exportExcel(){
 
-alert("開始匯出");
-
-alert(typeof XLSX);
 
 const snapshot =
 await window.firebaseFns.getDocs(
@@ -1384,30 +1381,27 @@ downloadExcel(blob,fileName);
 
 function downloadExcel(blob,fileName){
 
-    let url = URL.createObjectURL(blob);
+    let fileURL = URL.createObjectURL(blob);
 
     let a = document.createElement("a");
 
-    a.href = url;
+    a.href = fileURL;
 
     a.download = fileName;
-
-    a.style.display = "none";
 
     document.body.appendChild(a);
 
     a.click();
 
-    document.body.removeChild(a);
-
     setTimeout(()=>{
 
-        URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+
+        URL.revokeObjectURL(fileURL);
 
     },1000);
 
 }
-
 
 
 
