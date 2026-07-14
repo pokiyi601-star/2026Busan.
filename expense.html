@@ -1376,10 +1376,40 @@ let blob = new Blob(
 );
 
 
-let url = URL.createObjectURL(blob);
+let fileName = "2026釜山旅費紀錄.xlsx";
+
+if (navigator.share && navigator.canShare) {
+
+    let file = new File(
+        [blob],
+        fileName,
+        {
+            type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        }
+    );
 
 
-window.open(url, "_blank");
+    if(navigator.canShare({files:[file]})){
+
+        await navigator.share({
+
+            files:[file],
+
+            title:"2026釜山旅費紀錄"
+
+        });
+
+    }else{
+
+        downloadExcel(blob,fileName);
+
+    }
+
+}else{
+
+    downloadExcel(blob,fileName);
+
+}
 
 
 }
