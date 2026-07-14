@@ -1389,16 +1389,30 @@ downloadExcel(blob,fileName);
 
 
 }
+
 function downloadExcel(blob,fileName){
 
-    const objectURL = window.URL.createObjectURL(blob);
+    let url = URL.createObjectURL(blob);
 
-    console.log(objectURL);
+    let a = document.createElement("a");
 
-    window.open(objectURL,"_blank");
+    a.href = url;
+
+    a.download = fileName;
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    document.body.removeChild(a);
+
+    setTimeout(()=>{
+
+        URL.revokeObjectURL(url);
+
+    },1000);
 
 }
-
 
 
 </script>
