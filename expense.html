@@ -150,7 +150,7 @@ type="number"
 
 step="0.1"
 
-value="42"
+value="46"
 
 class="input-style">
 
@@ -495,7 +495,7 @@ class="bg-stone-800 text-white px-4 py-2 rounded-xl text-sm font-bold">
 
 let paymentMethod="";
 
-let exchangeRate=0.024;
+let exchangeRate=46;
 
 
 
@@ -1186,7 +1186,7 @@ document.getElementById("totalTwd").innerText=
 
 "NT$"+formatNumber(
 
-Math.round(totalWon*exchangeRate)
+Math.round(totalWon/exchangeRate)
 
 );
 
