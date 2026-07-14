@@ -1358,14 +1358,24 @@ worksheet,
 );
 
 
+let excelBuffer = XLSX.write(workbook, {
+    bookType: "xlsx",
+    type: "array"
+});
 
-XLSX.writeFile(
 
-workbook,
-
-"2026釜山旅費紀錄.xlsx"
-
+let blob = new Blob(
+    [excelBuffer],
+    {
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    }
 );
+
+
+let url = URL.createObjectURL(blob);
+
+
+window.open(url, "_blank");
 
 
 }
