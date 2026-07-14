@@ -530,6 +530,43 @@ class="bg-stone-800 text-white px-4 py-2 rounded-xl text-sm font-bold">
 
 
 let paymentMethod="";
+document.getElementById("loginBtn").onclick = async()=>{
+
+const { signInWithPopup } = await import(
+"https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js"
+);
+
+
+try{
+
+const result = await signInWithPopup(
+window.auth,
+window.provider
+);
+
+
+alert(
+"登入成功：" + result.user.email
+);
+
+
+document.getElementById("appArea")
+.classList.remove("hidden");
+
+
+document.getElementById("loginArea")
+.classList.add("hidden");
+
+
+}
+
+catch(error){
+
+alert("登入失敗：" + error.message);
+
+}
+
+};
 
 let exchangeRate=46;
 
@@ -675,10 +712,14 @@ Math.round(won/exchangeRate)
 
 import("./firebase-config.js")
 
-.then(async({db})=>{
+.then(async({db, auth, provider})=>{
 
 
 window.db=db;
+
+window.auth=auth;
+
+window.provider=provider;
 
 
 
