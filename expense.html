@@ -286,7 +286,7 @@ NT$0
 
 <p id="previewTwd" class="text-sm text-stone-500 mt-2">
 
-約 NT$0
+約 NT$0（匯率：₩46 = NT$1）
 
 </p>
 
@@ -581,7 +581,8 @@ let won = Number(document.getElementById("won").value) || 0;
 document.getElementById("previewTwd").innerText =
 "約 NT$" + formatNumber(
 Math.round(won / exchangeRate)
-);
+)
++"（匯率：₩"+exchangeRate+" = NT$1）";
 
 loadExpenses();
 
@@ -643,7 +644,9 @@ formatNumber(
 
 Math.round(won/exchangeRate)
 
-);
+)
+
++"（匯率：₩"+exchangeRate+" = NT$1）";
 
 
 });
@@ -1061,13 +1064,17 @@ id:d.id,
 
 
 
-arr.sort(
+arr.sort((a,b)=>{
 
-(a,b)=>
+if(!a.createdAt || !b.createdAt){
 
-new Date(b.date)-new Date(a.date)
+return 0;
 
-);
+}
+
+return b.createdAt.seconds - a.createdAt.seconds;
+
+});
 
 
 
