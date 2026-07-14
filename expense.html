@@ -1395,25 +1395,31 @@ function downloadExcel(blob,fileName){
 
     const a = document.createElement("a");
 
-    a.style.display = "none";
-
     a.href = url;
-
     a.download = fileName;
 
+    // Chrome需要真的插入畫面再觸發
     document.body.appendChild(a);
 
-    a.click();
+    a.dispatchEvent(
+        new MouseEvent("click",{
+            bubbles:true,
+            cancelable:true,
+            view:window
+        })
+    );
+
+    document.body.removeChild(a);
 
     setTimeout(()=>{
 
-        document.body.removeChild(a);
-
         URL.revokeObjectURL(url);
 
-    },2000);
+    },1000);
 
 }
+
+
 
 
 
