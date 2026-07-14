@@ -1116,6 +1116,16 @@ ${data.item}
 
 </p>
 
+${data.createdAt ?
+`
+<p class="text-xs text-stone-400">
+🕒 ${new Date(data.createdAt.seconds * 1000).toLocaleString("zh-TW")}
+</p>
+`
+:
+""
+}
+
 
 </div>
 
@@ -1283,6 +1293,8 @@ rows.push([
 
 "付款人"
 
+"備註"
+
 ]);
 
 
@@ -1298,6 +1310,12 @@ rows.push([
 
 data.date,
 
+data.createdAt
+?
+new Date(data.createdAt.seconds * 1000).toLocaleString("zh-TW")
+:
+"",
+
 data.item,
 
 "₩" + Number(data.won).toLocaleString(),
@@ -1310,7 +1328,9 @@ data.item,
 
 data.payment,
 
-data.person
+data.person,
+
+data.note || ""
 
 ]);
 
